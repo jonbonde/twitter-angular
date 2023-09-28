@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/PostgREST/postgrest/releases/tag/v11.2.0
+HostUrl=https://objects.githubusercontent.com/github-production-release-asset-2e65be/20787122/04864d13-7652-42c6-8609-3fe2f0c1d564?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230831%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230831T080352Z&X-Amz-Expires=300&X-Amz-Signature=cafa8ac8c59987db0dd5970bfbb5c23d9165dbb7f9190986379580338fa7768d&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=20787122&response-content-disposition=attachment%3B%20filename%3Dpostgrest-v11.2.0-linux-static-x64.tar.xz&response-content-type=application%2Foctet-stream

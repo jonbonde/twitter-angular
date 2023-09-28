@@ -1,0 +1,33 @@
+.krabbe {
+    display: inline-block;
+    padding: 0.3em 1.2em;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #FFFFFF;
+    background-color: #4eb5f1;
+    text-align: center;
+    transition: all 0.2s;
+    border-color: rgb(62, 62, 179);
+}
+
+.krabbe:hover {
+    background-color: #4095c6;
+    border-color: rgb(93, 93, 237);
+    cursor: pointer;
+}
+
+@media all and (max-width: 30em) {
+    button {
+        display: block;
+        margin: 0.2em auto;
+    }
+}
+
+.krabbeLabel {
+    padding-right: 5px;
+}

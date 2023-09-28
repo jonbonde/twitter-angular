@@ -1,0 +1,13 @@
+<div class="centerText">
+    <h3 class="title">Register new user</h3>
+
+    <app-input class="username" label="Username" for="username" id="username" name="username" placeholder="Username..." type="text" #username></app-input>
+
+    <app-input class="email" label="Email" for="email" id="email" name="email" placeholder="Email..." type="text" #email></app-input>
+
+    <app-input class="password" label="Password" for="password" id="password" name="password" placeholder="Password..." type="password" #password></app-input>
+
+    <app-button class="registerBtn" (click)="registerNew(username.getValue(), email.getValue(), password.getValue())">Register</app-button>
+
+    <div class="response">{{response}}</div>
+</div>

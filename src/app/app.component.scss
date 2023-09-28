@@ -1,0 +1,44 @@
+.title {
+    font-family: 'times new roman', sans-serif;
+    font-size: 70px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, lightblue, #4eb5f1);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.timelineLink {
+    text-decoration: none;
+}
+
+.timelineLink:visited {
+    text-decoration: none;
+}
+
+.timelineLink:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.timelineLink:focus {
+    text-decoration: none;
+}
+
+.centerText {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #4eb5f1;
+}
+
+.fixedLeft {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+}

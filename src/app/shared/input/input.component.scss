@@ -1,0 +1,16 @@
+input {
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(15 23 42 / var(--tw-border-opacity));
+  border-radius: 0.5rem /* 4px */;
+  background-color: rgb(255 255 255 / 0.95);
+  --tw-backdrop-blur: blur(4px);
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: space-between;
+  width: 17rem;
+}

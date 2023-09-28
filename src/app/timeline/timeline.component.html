@@ -1,0 +1,39 @@
+<div class="newPost">
+    <div *ngIf="isLogedIn" class="plommer">
+        <app-button (click)="toggleForm()" class="newPostBtn">{{toggleMessage}}</app-button>
+    </div>
+
+    <div *ngIf="showForm && isLogedIn">
+        <app-create-post (postCreatedEvent)="onPostCreated($event)"></app-create-post>
+    </div>
+</div>
+
+<div class="posts">
+    <div *ngFor="let post of posts" class="post">
+        <div class="postHeader">
+            <h2>{{post.user?.username}}</h2>
+            <pre>{{post.body}}</pre>
+        </div>
+        <div class="postCounters">
+            <p>like count: {{post.likes_count}}</p>
+            <p>repost count: {{post.reposts_count}}</p>
+        </div>
+        <div *ngIf="isLogedIn && currentUser" class="postFooter">
+            <div>
+                <app-button label="LIKE ME" (click)="likePost(post.id)">
+                    :D
+                </app-button>
+            </div>
+            <div>
+                <app-button label="REPOST ME" (click)="repostPost(post.id)">
+                    :)
+                </app-button>
+            </div>
+            <div>
+                <app-button *ngIf="post.user?.username === currentUser" label="DELETE ME" (click)="deletePost(post.id)">
+                    :(
+                </app-button>
+            </div>
+        </div>
+    </div>
+</div>
