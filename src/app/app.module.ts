@@ -11,6 +11,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { InputComponent } from './shared/input/input.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AccountDetailComponent } from './account-detail/account-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LogoutComponent } from './logout/logout.component';
     RegisterUserComponent,
     LoginUserComponent,
     InputComponent,
-    LogoutComponent
+    LogoutComponent,
+    AccountDetailComponent
   ],
   imports: [
     BrowserModule,

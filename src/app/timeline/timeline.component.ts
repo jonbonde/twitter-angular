@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { PostsService } from '../posts.service';
 import { Post } from '../post';
 import { Observable } from 'rxjs';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { LocalService } from '../local.service';
 import { UsersService } from '../users.service';
+import { ImageService } from '../image.service';
 
 @Component({
   selector: 'app-timeline',
@@ -18,12 +19,12 @@ export class TimelineComponent {
   currentUser: string | null = "";
   isLogedIn: string | null = "false";
 
-  constructor(private postsService: PostsService, private localStore: LocalService, private usersService: UsersService) {}
+  constructor(private postsService: PostsService, private localStore: LocalService, private usersService: UsersService, private imageService: ImageService) {}
 
   ngOnInit(): void {
     this.postsService.getPosts().subscribe((data) => {
       this.posts = data;
-    })
+    });
     this.currentUser = this.localStore.getData("currentUser");
     this.isLogedIn = this.localStore.getData("isLogedIn");
   }
@@ -52,16 +53,28 @@ export class TimelineComponent {
     });
   }
 
-  deletePost(id: number): void {
+  deletePost(id: number, imageName: string | undefined): void {
+    const formData = new FormData();
+    formData.append('file', "images/" + imageName?.substring(imageName.lastIndexOf('/') + 1));
+
     this.postsService.deletePost(id).subscribe(post => {
       console.log(post);
       const match = this.posts.find(p => p.id === post.id);
       if (match) {
         const index = this.posts.indexOf(match);
-        //delete this.posts[index];
         this.posts.splice(index, 1);
       }
     });
+
+    if (imageName) {
+      this.imageService.deleteImage(formData).subscribe((image) => {
+        console.log(image);
+      })
+
+      this.imageService.deletePath(imageName).subscribe((image) => {
+        console.log(image);
+      });
+    }
   }
 
   toggleForm(): void {
@@ -76,5 +89,4 @@ export class TimelineComponent {
   onPostCreated(post: Post): void {
     this.posts.unshift(post);
   }
-
 }

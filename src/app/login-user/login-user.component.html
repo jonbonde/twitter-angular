@@ -1,9 +1,9 @@
 <div class="centerText">
     <h3 class="title">Login to your account</h3>
 
-    <app-input class="username" label="Username" for="username" id="username" name="username" placeholder="Username..." type="text" #username></app-input>
+    <app-input style="width: 17rem;" class="username" label="Username" for="username" id="username" name="username" placeholder="Username..." type="text" #username></app-input>
 
-    <app-input class="password" label="Password" for="password" id="password" name="password" placeholder="Password..." type="password" #password></app-input>
+    <app-input style="width: 17rem;" class="password" label="Password" for="password" id="password" name="password" placeholder="Password..." type="password" #password></app-input>
 
     <app-button class="loginBtn" (click)="login(username.getValue(), password.getValue())">Login</app-button>
 

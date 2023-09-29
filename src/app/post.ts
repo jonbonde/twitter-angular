@@ -1,3 +1,4 @@
+import { Image } from "./image";
 import { User } from "./user";
 
 export interface Post {
@@ -7,4 +8,6 @@ export interface Post {
     reposts_count: number;
     user_id: number;
     user?: User;
+    image_id: number;
+    image?: Image;
 }

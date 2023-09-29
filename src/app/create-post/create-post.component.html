@@ -1,5 +1,6 @@
 <div class="create">
-    <textarea type="text" id="body" name="body" #body required placeholder="Make a new post" class="new" ></textarea>
+    <textarea style="padding: 5px;" type="text" id="body" name="body" #body required placeholder="Make a new post" class="new"></textarea>
+    <input type="file" (change)="onFileSelected($event)" />
     <app-button (click)="newPost(body.value)"> post </app-button>
     <div class="response">{{response}}</div>
 </div>

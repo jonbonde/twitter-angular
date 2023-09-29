@@ -13,6 +13,7 @@ export class InputComponent {
   @Input() type: string = "";
   @Input() for: string = "";
   @Input() referance: string = "";
+  @Input() value: string = "";
 
   @ViewChild('inputElement') inputElement!: ElementRef;
 

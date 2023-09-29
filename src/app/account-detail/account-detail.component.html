@@ -1,17 +1,22 @@
-<div class="newPost">
-    <div *ngIf="isLogedIn" class="plommer">
-        <app-button (click)="toggleForm()" class="newPostBtn">{{toggleMessage}}</app-button>
-    </div>
-
-    <div *ngIf="showForm && isLogedIn">
-        <app-create-post (postCreatedEvent)="onPostCreated($event)"></app-create-post>
+<div class="posts">
+    <div class="accountInfo">
+        <h3>Account: {{username}}</h3>
+        <pre class="bio" *ngIf="!showForm">{{account.bio}}</pre>
+        <div *ngIf="showForm">
+            <textarea class="plz" name="bio" id="bio" type="text" value="{{account.bio}}" #bio></textarea>
+            <!--<div style="padding-top: 12px;"></div>-->
+            <app-button (click)="saveBio(bio.value, account.id)">Save</app-button>
+        </div>
+        <app-button id="test" *ngIf="currentUser === username" (click)="toggleForm()" style="padding-top: 10px;">{{btnMessage}}</app-button>
     </div>
 </div>
 
 <div class="posts">
     <div *ngFor="let post of posts" class="post">
         <div class="postHeader">
-            <a [routerLink]="['/account', post.user?.username]" class="accountLink"><h2>{{post.user?.username}}</h2></a>
+            <a [routerLink]="['/account', post.user?.username]" class="accountLink">
+                <h2>{{post.user?.username}}</h2>
+            </a>
             <pre>{{post.body}}</pre>
         </div>
         <div class="image" *ngIf="post.image_id">

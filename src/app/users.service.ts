@@ -44,6 +44,11 @@ export class UsersService {
     );
   }
 
+  saveBio(userData: { bio: string }, id: number): Observable<User> {
+    const url = `${this.baseUrl}/users?id=eq.${id}`;
+    return this.http.patch<User>(url, userData, { headers: { Prefer: 'return=representation', Accept: 'application/vnd.pgrst.object+json' } });
+  }
+
   login(username: string, password: string): Observable<User> {
     const url = `${this.baseUrl}/rpc/login`;
     return this.http.post<User>(

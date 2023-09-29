@@ -27,16 +27,18 @@
     --tw-shadow: var(--tw-shadow-colored);
 }
 
+.bio {
+    margin: 0;
+    padding: 0;
+}
+
 pre {
     font-family: 'Roboto', sans-serif;
-    font-weight: 300;
 }
 
 .postHeader {
     padding-left: 20px;
     padding-right: 20px;
-    max-width: 40vw;
-    word-wrap: break-word;
 }
 
 .postCounters {
@@ -54,26 +56,6 @@ pre {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
     justify-content: space-between;
-}
-
-.newPost {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
-
-.plommer {
-    display: flex;
-    align-items: flex-start;
-    padding-bottom: 10px;
-    flex-direction: column;
-    width: 47vw;
-    max-width: 47vw;
-    word-wrap: break-word;
-}
-
-.newPostBtn {
-    float: left;
 }
 
 .accountLink {
@@ -94,6 +76,40 @@ pre {
     text-decoration: none;
 }
 
+.accountInfo {
+    margin: 10px;
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 10px;
+    flex-direction: column;
+    width: 47vw;
+    max-width: 47vw;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5rem/* 8px */;
+    border-width: 1px;
+    border-color: rgb(148 163 184);
+}
+
+.plz {
+    display: flex;
+    padding: 2px;
+    //margin-top: 10px;
+    margin-bottom: 10px;
+    width: 570px;
+    height: 70px;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(15 23 42 / var(--tw-border-opacity));
+    border-radius: 0.5rem /* 4px */;
+    background-color: rgb(255 255 255 / 0.95);
+    --tw-backdrop-blur: blur(4px);
+    box-sizing: border-box;
+    resize: none;
+    font-family: "Roboto", sans-serif;
+    font-size: large;
+}
+
 .image {
-    padding: 15px;
+    margin: 15px;
 }
