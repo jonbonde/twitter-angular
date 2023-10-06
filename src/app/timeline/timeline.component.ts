@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { PostsService } from '../posts.service';
 import { Post } from '../post';
+import { Comment } from "../comment";
 import { Observable } from 'rxjs';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { LocalService } from '../local.service';
@@ -14,8 +15,10 @@ import { ImageService } from '../image.service';
 })
 export class TimelineComponent {
   posts: Post[] = [];
-  public showForm:boolean = false;
-  public toggleMessage:string = "Make new post";
+  comments: Comment[] = [];
+  public showForm: boolean = false;
+  public toggleMessage: string = "Make new post";
+  showComments: number = 0;
   currentUser: string | null = "";
   isLogedIn: string | null = "false";
 
@@ -38,6 +41,19 @@ export class TimelineComponent {
         const index = this.posts.indexOf(match);
         this.posts[index] = post;
       }
+    });
+  }
+
+  likeComment(id: number): void {
+    this.postsService.likeComment(id).subscribe(comment => {
+      console.log(comment);
+
+      const match = this.comments.find(c => c.id === comment.id);
+      if (match) {
+        const index = this.comments.indexOf(match);
+        this.comments[index] = comment;
+      }
+      //this.comments = this.comments.sort((a, b) => a.likes_count < b.likes_count ? 1 : -1);
     });
   }
 
@@ -86,7 +102,25 @@ export class TimelineComponent {
       this.toggleMessage = "Make new post";
   }
 
+  toggleComments(postId: number): void {
+    this.showComments = postId;
+
+    this.postsService.getComments(postId).subscribe(data => {
+      this.comments = data;
+      console.log(this.comments);
+    });
+  }
+
+  hideComments(): void {
+    this.showComments = 0;
+    this.comments = [];
+  }
+
   onPostCreated(post: Post): void {
     this.posts.unshift(post);
+  }
+
+  onCommentCreated(comment: Comment): void {
+    this.comments.unshift(comment);
   }
 }

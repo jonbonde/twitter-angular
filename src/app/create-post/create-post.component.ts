@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import { Post } from '../post';
 import { PostsService } from '../posts.service';
 import { UsersService } from '../users.service';
@@ -12,12 +12,14 @@ import { combineLatest } from 'rxjs';
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent {
-  posts: Post[] = [];
+  //posts: Post[] = [];
   response: string = '';
   selectedFile: File = new File([], 'empty.txt', { type: 'text/plain' });
   imageId: number | null = null;
 
   @Output() postCreatedEvent: EventEmitter<Post> = new EventEmitter<Post>();
+  @ViewChild('body') bodyElement!: ElementRef;
+  @ViewChild('fileInput') fileInputElement!: ElementRef;
 
   constructor(
     private postsService: PostsService,
@@ -26,6 +28,9 @@ export class CreatePostComponent {
   ) {}
 
   newPost(body: string): void {
+    const inputImage = document.getElementById('imageInput');
+    console.log('dette er bildetetkrejgioreg ' + inputImage);
+
     if (this.selectedFile.name != 'empty.txt') {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
@@ -68,6 +73,9 @@ export class CreatePostComponent {
       }
     );
     }
+
+    this.bodyElement.nativeElement.value = '';
+    this.fileInputElement.nativeElement.value = '';
   }
 
   onFileSelected(event: any): void {

@@ -12,6 +12,7 @@ import { LoginUserComponent } from './login-user/login-user.component';
 import { InputComponent } from './shared/input/input.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
+import { CreateCommentComponent } from './create-comment/create-comment.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
     LoginUserComponent,
     InputComponent,
     LogoutComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    CreateCommentComponent
   ],
   imports: [
     BrowserModule,

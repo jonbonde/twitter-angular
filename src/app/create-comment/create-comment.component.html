@@ -1,0 +1,4 @@
+<div class="create">
+    <textarea maxlength="280" style="padding: 5px;" id="body" name="body" #body required placeholder="Make a comment" class="new"></textarea> <br>
+    <app-button (click)="newComment(body.value, parseInt(id))"> post </app-button>
+</div>

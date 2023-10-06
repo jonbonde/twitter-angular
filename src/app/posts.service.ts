@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, mergeMap, of, tap, throwError } from 'rxjs';
 import { Post } from './post';
+import { Comment } from "./comment";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,11 @@ export class PostsService {
     );
   }
 
+  likeComment(id: number): Observable<Comment> {
+    const url = `${this.baseUrl}/rpc/like_comment?order=likes_count.desc`;
+    return this.http.post<Comment>(url, { params: { id_param: id } })
+  }
+
   repostPost(id: number): Observable<Post> {
     const url = `${this.baseUrl}/rpc/repost_post?select=*,user:users(username),image:images(image_path)`;
     return this.http.post<Post>(
@@ -45,5 +51,15 @@ export class PostsService {
     return this.http.delete<Post>(
       url, { headers: { Prefer: "return=representation", Accept: 'application/vnd.pgrst.object+json' } }
     );
+  }
+
+  getComments(postId: number): Observable<Comment[]> {
+    const url = `${this.baseUrl}/comments?post_id=eq.${postId}&order=likes_count.desc`;
+    return this.http.get<Comment[]>(url);
+  }
+
+  newComment(commentData: {body: string, post_id: number}): Observable<Comment> {
+    const url = `${this.baseUrl}/comments`;
+    return this.http.post<Comment>(url, commentData, { headers: { Prefer: 'return=representation', Accept: 'application/vnd.pgrst.object+json' } })
   }
 }

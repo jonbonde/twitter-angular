@@ -1,0 +1,19 @@
+.create {
+  margin-left: 5px;
+  width: 47vw;
+  max-width: 47vw;
+}
+
+.new {
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(15 23 42 / var(--tw-border-opacity));
+  border-radius: 0.5rem /* 4px */;
+  background-color: rgb(255 255 255 / 0.95);
+  --tw-backdrop-blur: blur(4px);
+  box-sizing: border-box;
+  resize: none;
+  width: 17vw;
+  max-width: 27vw;
+  height: 3.5rem;
+}
