@@ -13,6 +13,12 @@ import { InputComponent } from './shared/input/input.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { CreateCommentComponent } from './create-comment/create-comment.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from "./counter/counter.reducer";
+import { CounterComponent } from "./counter/counter.component";
+import { SearchComponent } from './search/search.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { showFormReducer } from "./timeline/show-form.reducer";
 
 @NgModule({
   declarations: [
@@ -25,12 +31,16 @@ import { CreateCommentComponent } from './create-comment/create-comment.componen
     InputComponent,
     LogoutComponent,
     AccountDetailComponent,
-    CreateCommentComponent
+    CreateCommentComponent,
+    CounterComponent,
+    SearchComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({ count: counterReducer, showForm: showFormReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

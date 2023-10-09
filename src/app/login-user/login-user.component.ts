@@ -10,8 +10,8 @@ import { LocalService } from '../local.service';
   styleUrls: ['./login-user.component.scss']
 })
 export class LoginUserComponent {
-  users: User[] = [];
-  response: string = "";
+  users!: User[];
+  response!: string;
 
   constructor(private usersService: UsersService, private router: Router, private localStore: LocalService) { }
 
@@ -22,7 +22,7 @@ export class LoginUserComponent {
         this.localStore.saveData("isLogedIn", "true");
         this.localStore.saveData("currentUser", username);
 
-        this.router.navigate(['/timeline']);
+        this.router.navigate(['/account', username]);
         this.usersService.loginCompleted();
       } else {
         this.response = "Wrong username or password!!!";

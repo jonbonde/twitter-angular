@@ -16,6 +16,11 @@ export class UsersService {
     return this.http.get<User[]>(url);
   }
 
+  searchUsers(search: string): Observable<User[]> {
+    const url = `${this.baseUrl}/users?username=ilike.*${search}*`;
+    return this.http.get<User[]>(url);
+  }
+
   getUser(username: string | null): Observable<User> {
     const url = `${this.baseUrl}/users?username=eq.${username}`
     return this.http.get<User>(url, { headers: { Prefer: "return=representation", Accept: 'application/vnd.pgrst.object+json' } }).pipe(

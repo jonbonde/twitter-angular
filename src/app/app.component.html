@@ -1,6 +1,6 @@
-<app-logout *ngIf="isLogedIn"></app-logout>
-<div class="fixedLeft" *ngIf="isLogedIn"><a class="timelineLink" routerLink="/account/{{currentUser}}">You are logged inn as: {{currentUser}}</a></div>
-<a routerLink="/timeline" class="timelineLink"><h1 class="title">{{title}}</h1></a>
+<app-navbar></app-navbar>
+
+<!--<a routerLink="/timeline" class="timelineLink"><h1 class="title">{{title}}</h1></a>-->
 
 <div *ngIf="!isLogedIn" class="centerText">
     <div style="padding-bottom: 7px;">You are not loged in</div>

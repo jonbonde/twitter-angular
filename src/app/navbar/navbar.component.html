@@ -1,0 +1,14 @@
+<div class="navbar">
+    <div>
+        <div class="fixedLeft" *ngIf="isLogedIn"><a class="timelineLink" routerLink="/account/{{currentUser}}">You are logged inn as: {{currentUser}}</a></div>
+    </div>
+    <div>
+        <a routerLink="/timeline" class="timelineLink"><h1 class="title">Twitter</h1></a>
+    </div>
+    <div>
+        <app-search></app-search>
+    </div>
+    <div class="logOut">
+        <app-logout *ngIf="isLogedIn"></app-logout>
+    </div>
+</div>

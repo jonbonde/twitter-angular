@@ -1,11 +1,19 @@
 <div class="newPost">
+<!--    <div *ngIf="isLogedIn" class="plommer">-->
+<!--        <app-button (click)="toggleForm()" class="newPostBtn">{{toggleMessage}}</app-button>-->
+<!--    </div>-->
+
+<!--    <div *ngIf="showForm && isLogedIn">-->
+<!--        <app-create-post (postCreatedEvent)="onPostCreated($event)"></app-create-post>-->
+<!--    </div>-->
+
     <div *ngIf="isLogedIn" class="plommer">
-        <app-button (click)="toggleForm()" class="newPostBtn">{{toggleMessage}}</app-button>
+        <app-button (click)="changeState()" class="newPostBtn">{{toggleMessage}}</app-button>
+        <div *ngIf="showForm$ | async">
+            <app-create-post (postCreatedEvent)="onPostCreated($event)"></app-create-post>
+        </div>
     </div>
 
-    <div *ngIf="showForm && isLogedIn">
-        <app-create-post (postCreatedEvent)="onPostCreated($event)"></app-create-post>
-    </div>
 </div>
 
 <div class="posts">

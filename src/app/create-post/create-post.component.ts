@@ -29,7 +29,6 @@ export class CreatePostComponent {
 
   newPost(body: string): void {
     const inputImage = document.getElementById('imageInput');
-    console.log('dette er bildetetkrejgioreg ' + inputImage);
 
     if (this.selectedFile.name != 'empty.txt') {
       const formData = new FormData();
