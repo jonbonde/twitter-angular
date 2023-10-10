@@ -8,7 +8,7 @@
 <!--    </div>-->
 
     <div *ngIf="isLogedIn" class="plommer">
-        <app-button (click)="changeState()" class="newPostBtn">{{toggleMessage}}</app-button>
+        <app-button (click)="changePostState()" class="newPostBtn">{{toggleMessage}}</app-button>
         <div *ngIf="showForm$ | async">
             <app-create-post (postCreatedEvent)="onPostCreated($event)"></app-create-post>
         </div>
@@ -41,7 +41,10 @@
                 </app-button>
             </div>
             <div>
-                <app-button label="COMMENTS" (click)="showComments !== post.id ? toggleComments(post.id): hideComments()">
+<!--                <app-button label="COMMENTS" (click)="showComments !== post.id ? toggleComments(post.id): hideComments()">-->
+<!--                    :O-->
+<!--                </app-button>-->
+                <app-button label="COMMENTS" (click)="commentsToPost !== post.id ? changCommentsState(post.id) : hideComments()">
                     :O
                 </app-button>
             </div>
@@ -51,7 +54,7 @@
                 </app-button>
             </div>
         </div>
-        <div *ngIf="showComments === post.id" class="postComments">
+        <div *ngIf="(showComments$ | async) === post.id" class="postComments">
             <app-create-comment id="{{post.id}}" (commentCreatedEvent)="onCommentCreated($event)"></app-create-comment>
             <div>
                 <div *ngFor="let comment of comments">

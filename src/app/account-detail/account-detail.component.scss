@@ -25,15 +25,23 @@
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     --tw-shadow-color: #cbd5e1;
     --tw-shadow: var(--tw-shadow-colored);
+    contain: content;
 }
 
 .bio {
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-color: #4eb5f1;
+    border-width: 5px;
+    border-radius: 2rem;
 }
 
 pre {
     font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    white-space: pre-wrap;
 }
 
 .postHeader {

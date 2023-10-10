@@ -7,8 +7,8 @@ import {CreatePostComponent} from '../create-post/create-post.component';
 import {LocalService} from '../local.service';
 import {UsersService} from '../users.service';
 import {ImageService} from '../image.service';
-import {Store} from "@ngrx/store";
-import {changeState} from "./show-form.actions";
+import {select, Store} from "@ngrx/store";
+import {changePostState, changeCommentsState} from "./show-form.actions";
 
 @Component({
     selector: 'app-timeline',
@@ -20,15 +20,18 @@ export class TimelineComponent {
     comments: Comment[] = [];
     public showForm: boolean = false;
     public toggleMessage: string = "Make new post";
-    showComments: number = 0;
+    commentsToPost: number = 0;
     currentUser: string | null = "";
     isLogedIn: string | null = "false";
     showForm$!: Observable<boolean>;
+    showComments$!: Observable<number>;
 
     constructor(private postsService: PostsService, private localStore: LocalService, private usersService: UsersService, private imageService: ImageService, private store: Store<{
-        showForm: boolean
+        showForm: boolean,
+        showComments: number
     }>) {
         this.showForm$ = store.select('showForm');
+        this.showComments$ = store.select('showComments');
     }
 
     ngOnInit(): void {
@@ -39,11 +42,23 @@ export class TimelineComponent {
         this.isLogedIn = this.localStore.getData("isLogedIn");
     }
 
-    changeState() {
-        this.store.dispatch(changeState());
+    changCommentsState(postId: number): void {
+        this.store.dispatch(changeCommentsState({ postId: postId }));
+
+        this.showComments$.subscribe(value => {
+            console.log(value);
+            console.log(postId);
+            this.commentsToPost = value;
+            this.toggleComments(value);
+        });
+    }
+
+    changePostState() {
+        this.store.dispatch(changePostState());
         console.log(this.showForm$);
 
-        this.showForm$.subscribe((value) => {
+        this.showForm$.subscribe(value => {
+            console.log(value);
             if (value)
                 this.toggleMessage = "Cancel";
             else
@@ -113,7 +128,7 @@ export class TimelineComponent {
     }
 
     toggleComments(postId: number): void {
-        this.showComments = postId;
+        //this.showComments = postId;
 
         this.postsService.getComments(postId).subscribe(data => {
             this.comments = data;
@@ -122,7 +137,9 @@ export class TimelineComponent {
     }
 
     hideComments(): void {
-        this.showComments = 0;
+        //this.showComments = 0;
+        console.log('irbhguoer');
+        this.store.dispatch(changeCommentsState({ postId: 0 }));
         this.comments = [];
     }
 
@@ -133,4 +150,6 @@ export class TimelineComponent {
     onCommentCreated(comment: Comment): void {
         this.comments.unshift(comment);
     }
+
+    protected readonly parseInt = parseInt;
 }

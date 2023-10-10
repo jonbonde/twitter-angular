@@ -18,7 +18,7 @@ import { counterReducer } from "./counter/counter.reducer";
 import { CounterComponent } from "./counter/counter.component";
 import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { showFormReducer } from "./timeline/show-form.reducer";
+import { showFormReducer, showCommentsReducer } from "./timeline/show-form.reducer";
 
 @NgModule({
   declarations: [
@@ -40,7 +40,7 @@ import { showFormReducer } from "./timeline/show-form.reducer";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ count: counterReducer, showForm: showFormReducer })
+    StoreModule.forRoot({ count: counterReducer, showForm: showFormReducer, showComments: showCommentsReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

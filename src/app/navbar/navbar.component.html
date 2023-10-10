@@ -1,4 +1,4 @@
-<div class="navbar">
+<nav class="navbar">
     <div>
         <div class="fixedLeft" *ngIf="isLogedIn"><a class="timelineLink" routerLink="/account/{{currentUser}}">You are logged inn as: {{currentUser}}</a></div>
     </div>
@@ -11,4 +11,4 @@
     <div class="logOut">
         <app-logout *ngIf="isLogedIn"></app-logout>
     </div>
-</div>
+</nav>

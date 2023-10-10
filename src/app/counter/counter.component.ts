@@ -14,19 +14,19 @@ export class CounterComponent {
     this.count$ = store.select('count');
   }
 
-  // increment() {
-  //   this.store.dispatch(increment());
-  // }
-  //
-  // decrement() {
-  //   this.store.dispatch(decrement());
-  // }
-  //
-  // reset() {
-  //   this.store.dispatch(reset());
-  // }
-
-  change() {
-    this.store.dispatch(change());
+  increment() {
+    this.store.dispatch(increment());
   }
+
+  decrement() {
+    this.store.dispatch(decrement());
+  }
+
+  reset() {
+    this.store.dispatch(reset());
+  }
+
+  // change() {
+  //   this.store.dispatch(change());
+  // }
 }

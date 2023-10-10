@@ -15,6 +15,11 @@ export class LoginUserComponent {
 
   constructor(private usersService: UsersService, private router: Router, private localStore: LocalService) { }
 
+  ngOnInit(): void {
+    this.localStore.clearData();
+    this.usersService.logoutCompleted();
+  }
+
   login(username: string, password: string): void {
     this.usersService.login(username, password).subscribe(isSuccess => {
       if (isSuccess) {

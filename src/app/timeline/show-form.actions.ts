@@ -1,3 +1,4 @@
-import { createAction } from "@ngrx/store";
+import {createAction, props} from "@ngrx/store";
 
-export const changeState = createAction('[Timeline Component] ChangeState');
+export const changePostState = createAction('[Timeline Component] ChangePostState');
+export const changeCommentsState = createAction('[Timeline Component] ChangeCommentsState', props<{ postId: number }>());
