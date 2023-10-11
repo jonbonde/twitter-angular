@@ -6,6 +6,10 @@ import { LocalService } from '../local.service';
 import { User } from '../user';
 import { UsersService } from '../users.service';
 import { ImageService } from '../image.service';
+import {select, Store} from "@ngrx/store";
+import {changePostState, changeCommentsState} from "../timeline/show-form.actions";
+import {Observable} from "rxjs";
+import {Comment} from "../comment";
 
 @Component({
   selector: 'app-account-detail',
@@ -20,14 +24,20 @@ export class AccountDetailComponent {
   isLogedIn: string | null = 'false';
   showForm: boolean = false;
   btnMessage: string = 'Update bio';
+  commentsToPost: number = 0;
+  showComments$!: Observable<number>;
+  comments: Comment[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService,
     private localStore: LocalService,
     private usersService: UsersService,
-    private imageService: ImageService
-  ) {}
+    private imageService: ImageService,
+    private store: Store<{ showComments: number }>
+  ) {
+    this.showComments$ = store.select('showComments');
+  }
 
   ngOnInit(): void {
     this.username = this.route.snapshot.paramMap.get('username');
@@ -42,6 +52,49 @@ export class AccountDetailComponent {
 
     this.currentUser = this.localStore.getData('currentUser');
     this.isLogedIn = this.localStore.getData('isLogedIn');
+  }
+
+  changCommentsState(postId: number): void {
+    this.store.dispatch(changeCommentsState({ postId: postId }));
+
+    this.showComments$.subscribe(value => {
+      console.log(value);
+      console.log(postId);
+      this.commentsToPost = value;
+      this.toggleComments(value);
+    });
+  }
+
+  toggleComments(postId: number): void {
+    //this.showComments = postId;
+
+    this.postsService.getComments(postId).subscribe(data => {
+      this.comments = data;
+      console.log(this.comments);
+    });
+  }
+
+  hideComments(): void {
+    //this.showComments = 0;
+    console.log('irbhguoer');
+    this.store.dispatch(changeCommentsState({ postId: 0 }));
+    this.comments = [];
+  }
+
+  onCommentCreated(comment: Comment): void {
+    this.comments.unshift(comment);
+  }
+
+  likeComment(id: number): void {
+    this.postsService.likeComment(id).subscribe(comment => {
+      console.log(comment);
+
+      const match = this.comments.find(c => c.id === comment.id);
+      if (match) {
+        const index = this.comments.indexOf(match);
+        this.comments[index] = comment;
+      }
+    });
   }
 
   likePost(id: number): void {

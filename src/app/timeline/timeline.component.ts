@@ -40,22 +40,12 @@ export class TimelineComponent {
         });
         this.currentUser = this.localStore.getData("currentUser");
         this.isLogedIn = this.localStore.getData("isLogedIn");
-    }
-
-    changCommentsState(postId: number): void {
-        this.store.dispatch(changeCommentsState({ postId: postId }));
 
         this.showComments$.subscribe(value => {
             console.log(value);
-            console.log(postId);
             this.commentsToPost = value;
             this.toggleComments(value);
         });
-    }
-
-    changePostState() {
-        this.store.dispatch(changePostState());
-        console.log(this.showForm$);
 
         this.showForm$.subscribe(value => {
             console.log(value);
@@ -64,6 +54,14 @@ export class TimelineComponent {
             else
                 this.toggleMessage = "Make new post";
         });
+    }
+
+    changCommentsState(postId: number): void {
+        this.store.dispatch(changeCommentsState({ postId: postId }));
+    }
+
+    changePostState() {
+        this.store.dispatch(changePostState());
     }
 
     likePost(id: number): void {
@@ -87,7 +85,6 @@ export class TimelineComponent {
                 const index = this.comments.indexOf(match);
                 this.comments[index] = comment;
             }
-            //this.comments = this.comments.sort((a, b) => a.likes_count < b.likes_count ? 1 : -1);
         });
     }
 

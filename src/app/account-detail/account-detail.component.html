@@ -38,9 +38,28 @@
                 </app-button>
             </div>
             <div>
+                <app-button label="COMMENTS" (click)="commentsToPost !== post.id ? changCommentsState(post.id) : hideComments()">
+                    :O
+                </app-button>
+            </div>
+            <div>
                 <app-button *ngIf="post.user?.username === currentUser" label="DELETE ME" (click)="deletePost(post.id, post.image?.image_path)">
                     :(
                 </app-button>
+            </div>
+        </div>
+        <div *ngIf="(showComments$ | async) === post.id" class="postComments">
+            <app-create-comment id="{{post.id}}" (commentCreatedEvent)="onCommentCreated($event)"></app-create-comment>
+            <div>
+                <div *ngFor="let comment of comments">
+                    <div class="commentsContainer">
+                        <div class="oneComment">
+                            <div style="align-content: center">{{comment.likes_count + "❤️"}}</div>
+                            <pre>{{comment.body}}</pre>
+                        </div>
+                        <div style="text-align: right;"><app-button label="like" (click)="likeComment(comment.id)">❤️</app-button></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

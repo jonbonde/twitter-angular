@@ -19,6 +19,8 @@ import { CounterComponent } from "./counter/counter.component";
 import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { showFormReducer, showCommentsReducer } from "./timeline/show-form.reducer";
+import { NgrxComponent } from './ngrx/ngrx.component';
+import { stateReducer } from "./ngrx/state.reducer";
 
 @NgModule({
   declarations: [
@@ -34,13 +36,14 @@ import { showFormReducer, showCommentsReducer } from "./timeline/show-form.reduc
     CreateCommentComponent,
     CounterComponent,
     SearchComponent,
-    NavbarComponent
+    NavbarComponent,
+    NgrxComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ count: counterReducer, showForm: showFormReducer, showComments: showCommentsReducer })
+    StoreModule.forRoot({ count: counterReducer, showForm: showFormReducer, showComments: showCommentsReducer, state: stateReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,12 @@
+<div class="buttons">
+    <app-button (click)="setState('timeline')">View timeline</app-button>
+    <app-button (click)="setState('otherStuff')">View some other stuff</app-button>
+</div>
+
+<div *ngIf="(state$ | async) === 'timeline'">
+    <app-timeline></app-timeline>
+</div>
+
+<div *ngIf="(state$ | async) === 'otherStuff'">
+
+</div>

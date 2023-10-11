@@ -28,6 +28,15 @@
     contain: content;
 }
 
+.postComments {
+    padding: 20px;
+    display: grid;
+    border-color: black;
+    border-top: outset;
+    //grid-template-columns: repeat(2, minmax(0, 1fr));
+
+}
+
 .bio {
     margin: 0;
     padding: 20px;
@@ -60,10 +69,30 @@ pre {
 .postFooter {
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 10px;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
     justify-content: space-between;
+}
+
+.commentsContainer {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    align-items: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #4095c6;
+    border-radius: 0.5rem/* 8px */;
+    background: #bbdefc;
+    width: 95%;
+}
+
+.oneComment {
+    display: grid;
+    grid-template-columns: 10% 90%;
 }
 
 .accountLink {
