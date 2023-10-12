@@ -1,7 +1,11 @@
 <div class="searchContainer">
-    <!--<input class="searchBox" type="text" id="search" #searchInput placeholder="search for a user" (input)="onInputChange($event)" />-->
+<!--    <input class="searchBox" type="text" id="search" #searchInput placeholder="search for a user" (input)="onInputChange($event)" />-->
     <app-input style="display: inline-block" for="search" label="Search for a user:" type="text" id="search" #searchInput placeholder="search for a user" (input)="onInputChange($event)"></app-input>
     <div class="results" *ngFor="let user of result">
-        <a [routerLink]="['/account', user.username]">{{user.username}}</a>
+        <a [routerLink]="['/account', user.username]" (click)="clear()">{{user.username}}</a>
     </div>
+<!--    <input type="text" list="results" (input)="onInputChange($event)" />-->
+<!--    <datalist id="results" class="results">-->
+<!--        <option *ngFor="let user of result">{{user.username}}</option>-->
+<!--    </datalist>-->
 </div>

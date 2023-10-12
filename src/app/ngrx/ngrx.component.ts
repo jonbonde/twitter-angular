@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 export class NgrxComponent {
     state$!: Observable<string>;
     stateValue!: string;
+    numbers: number[] = Array.from({length: 40}, () => Math.floor(Math.random() * 40));
 
     constructor(private store: Store<{ state: string }>) {
         this.state$ = store.select('state');

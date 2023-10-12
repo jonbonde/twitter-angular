@@ -8,5 +8,8 @@
 </div>
 
 <div *ngIf="(state$ | async) === 'otherStuff'">
-
+    <h2>This is some other stuff</h2>
+    <div *ngFor="let number of numbers">
+        {{ number }}
+    </div>
 </div>

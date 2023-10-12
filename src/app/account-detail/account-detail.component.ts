@@ -10,6 +10,7 @@ import {select, Store} from "@ngrx/store";
 import {changePostState, changeCommentsState} from "../timeline/show-form.actions";
 import {Observable} from "rxjs";
 import {Comment} from "../comment";
+import {switchMap} from "rxjs";
 
 @Component({
   selector: 'app-account-detail',
@@ -58,8 +59,6 @@ export class AccountDetailComponent {
     this.store.dispatch(changeCommentsState({ postId: postId }));
 
     this.showComments$.subscribe(value => {
-      console.log(value);
-      console.log(postId);
       this.commentsToPost = value;
       this.toggleComments(value);
     });
@@ -76,7 +75,6 @@ export class AccountDetailComponent {
 
   hideComments(): void {
     //this.showComments = 0;
-    console.log('irbhguoer');
     this.store.dispatch(changeCommentsState({ postId: 0 }));
     this.comments = [];
   }

@@ -26,4 +26,8 @@ export class SearchComponent {
       this.result = users;
     });
   }
+
+  clear(): void {
+    this.result = [];
+  }
 }
