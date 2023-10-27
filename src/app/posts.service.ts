@@ -27,22 +27,22 @@ export class PostsService {
     return this.http.post<Post>(url, postData, { headers: { Prefer: 'return=representation', Accept: 'application/vnd.pgrst.object+json' } }).pipe();
   }
 
-  likePost(id: number): Observable<Post> {
+  likePost(id: number, post_id: number, user_id: number): Observable<Post> {
     const url = `${this.baseUrl}/rpc/like_post?select=*,user:users(username),image:images(image_path)`;
     return this.http.post<Post>(
-      url, { params: { id_param: id } }
+      url, { params: { id_param: id, post_id_param: post_id, user_id_param: user_id } }
     );
   }
 
-  likeComment(id: number): Observable<Comment> {
+  likeComment(id: number, user_id: number): Observable<Comment> {
     const url = `${this.baseUrl}/rpc/like_comment?order=likes_count.desc`;
-    return this.http.post<Comment>(url, { params: { id_param: id } })
+    return this.http.post<Comment>(url, { params: { id_param: id, user_id_param: user_id } })
   }
 
-  repostPost(id: number): Observable<Post> {
+  repostPost(id: number, post_id: number, user_id: number): Observable<Post> {
     const url = `${this.baseUrl}/rpc/repost_post?select=*,user:users(username),image:images(image_path)`;
     return this.http.post<Post>(
-      url, { params: { id_param: id } }
+      url, { params: { id_param: id, post_id_param: post_id, user_id_param: user_id } }
     );
   }
 

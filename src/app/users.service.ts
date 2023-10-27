@@ -22,7 +22,7 @@ export class UsersService {
   }
 
   getUser(username: string | null): Observable<User> {
-    const url = `${this.baseUrl}/users?username=eq.${username}`
+    const url = `${this.baseUrl}/users?username=eq.${username}`;
     return this.http.get<User>(url, { headers: { Prefer: "return=representation", Accept: 'application/vnd.pgrst.object+json' } }).pipe(
       catchError((error) => {
         if (error.status === 406) {
@@ -33,6 +33,11 @@ export class UsersService {
         }
       })
     );
+  }
+
+  getUserId(username: string): Observable<number> {
+    const url = `${this.baseUrl}/rpc/get_user_id`;
+    return this.http.get<number>(url, { params: { username_param: username } });
   }
 
   registerNew(userData: { username: string, email: string, password: string }): Observable<User> {

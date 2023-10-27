@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { UsersService } from "../users.service";
-import {User} from "../user";
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { UsersService } from '../users.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
   result!: User[];
+  @ViewChild('searchInput', { static: false }) searchElement!: ElementRef;
 
   constructor(private usersService: UsersService) {}
 
@@ -29,5 +30,8 @@ export class SearchComponent {
 
   clear(): void {
     this.result = [];
+    console.log('Hoppsann heisann svisjen sveisann der feis han');
+    console.log('SHAMBALAYA Dette er valuen ' + this.searchElement.nativeElement.value);
+    this.searchElement.nativeElement.value = '';
   }
 }

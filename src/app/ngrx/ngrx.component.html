@@ -1,6 +1,7 @@
 <div class="buttons">
     <app-button (click)="setState('timeline')">View timeline</app-button>
     <app-button (click)="setState('otherStuff')">View some other stuff</app-button>
+    <app-button (click)="setState('katt')">View cat</app-button>
 </div>
 
 <div *ngIf="(state$ | async) === 'timeline'">
@@ -11,5 +12,14 @@
     <h2>This is some other stuff</h2>
     <div *ngFor="let number of numbers">
         {{ number }}
+    </div>
+</div>
+
+<div *ngIf="(state$ | async) === 'katt'">
+    <h2>Katt</h2>
+    <app-input type="number" #cat placeholder="http status"></app-input>
+    <app-button (click)="getCat(cat.getValueInt())">Test</app-button> {{imageData}}
+    <div *ngIf="imageData">
+        <img [src]="imageData" />
     </div>
 </div>

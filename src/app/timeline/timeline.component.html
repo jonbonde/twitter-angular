@@ -31,12 +31,12 @@
         </div>
         <div *ngIf="isLogedIn && currentUser" class="postFooter">
             <div>
-                <app-button label="LIKE ME" (click)="likePost(post.id)">
+                <app-button label="LIKE ME" (click)="likePost(post.id, post.id)">
                     :D
                 </app-button>
             </div>
             <div>
-                <app-button label="REPOST ME" (click)="repostPost(post.id)">
+                <app-button label="REPOST ME" (click)="repostPost(post.id, post.id)">
                     :)
                 </app-button>
             </div>

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {PostsService} from '../posts.service';
 import {Post} from '../post';
+import { User } from '../user';
 import {Comment} from "../comment";
 import {Observable} from 'rxjs';
 import {CreatePostComponent} from '../create-post/create-post.component';
@@ -25,6 +26,7 @@ export class TimelineComponent {
     isLogedIn: string | null = "false";
     showForm$!: Observable<boolean>;
     showComments$!: Observable<number>;
+    user_id!: number;
 
     constructor(private postsService: PostsService, private localStore: LocalService, private usersService: UsersService, private imageService: ImageService, private store: Store<{
         showForm: boolean,
@@ -54,6 +56,11 @@ export class TimelineComponent {
             else
                 this.toggleMessage = "Make new post";
         });
+
+        this.usersService.getUserId(this.currentUser !== null ? this.currentUser : "").subscribe((user: number) => {
+            this.user_id = user;
+            console.log("Første gang user id " + this.user_id);
+        });
     }
 
     changCommentsState(postId: number): void {
@@ -64,8 +71,8 @@ export class TimelineComponent {
         this.store.dispatch(changePostState());
     }
 
-    likePost(id: number): void {
-        this.postsService.likePost(id).subscribe(post => {
+    likePost(id: number, post_id: number): void {
+        this.postsService.likePost(id, post_id, this.user_id).subscribe(post => {
             console.log(post);
 
             const match = this.posts.find(p => p.id === post.id);
@@ -77,7 +84,7 @@ export class TimelineComponent {
     }
 
     likeComment(id: number): void {
-        this.postsService.likeComment(id).subscribe(comment => {
+        this.postsService.likeComment(id, this.user_id).subscribe(comment => {
             console.log(comment);
 
             const match = this.comments.find(c => c.id === comment.id);
@@ -88,8 +95,8 @@ export class TimelineComponent {
         });
     }
 
-    repostPost(id: number): void {
-        this.postsService.repostPost(id).subscribe(post => {
+    repostPost(id: number, post_id: number): void {
+        this.postsService.repostPost(id, post_id, this.user_id).subscribe(post => {
             console.log(post);
 
             const match = this.posts.find(p => p.id === post.id);

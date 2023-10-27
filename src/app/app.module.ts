@@ -21,6 +21,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { showFormReducer, showCommentsReducer } from "./timeline/show-form.reducer";
 import { NgrxComponent } from './ngrx/ngrx.component';
 import { stateReducer } from "./ngrx/state.reducer";
+import { accountReducer } from "./account-detail/account.reducer";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { stateReducer } from "./ngrx/state.reducer";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ count: counterReducer, showForm: showFormReducer, showComments: showCommentsReducer, state: stateReducer })
+    StoreModule.forRoot({ count: counterReducer, showForm: showFormReducer, showComments: showCommentsReducer, state: stateReducer, accountVal: accountReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

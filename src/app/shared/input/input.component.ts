@@ -20,4 +20,8 @@ export class InputComponent {
   getValue(): string {
     return this.inputElement.nativeElement.value;
   }
+
+  getValueInt(): number {
+    return this.inputElement.nativeElement.value;
+  }
 }
