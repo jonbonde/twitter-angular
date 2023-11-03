@@ -90,6 +90,11 @@ export class AccountDetailComponent {
   });
   }
 
+  adjustTextareaHeight(element: HTMLTextAreaElement) {
+    element.style.height = 'auto';
+    element.style.height = (element.scrollHeight) + 'px';
+  }
+
   setAccount(accountVal: string): void {
     this.store.dispatch(setAccount({ accountVal: accountVal }));
   }

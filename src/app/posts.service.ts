@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, mergeMap, of, tap, throwError } from 'rxjs';
 import { Post } from './post';
 import { Comment } from "./comment";
+import { Like } from './like';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PostsService {
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<Post[]> {
-    const url = `${this.baseUrl}/posts?order=id.desc&select=*,image:images(image_path),user:users(username)`;
+    const url = `${this.baseUrl}/posts?order=id.desc&select=*,image:images(image_path),user:users(username)&limit=2`;
     return this.http.get<Post[]>(url);
   }
 
@@ -61,5 +62,10 @@ export class PostsService {
   newComment(commentData: {body: string, post_id: number}): Observable<Comment> {
     const url = `${this.baseUrl}/comments`;
     return this.http.post<Comment>(url, commentData, { headers: { Prefer: 'return=representation', Accept: 'application/vnd.pgrst.object+json' } })
+  }
+
+  getLikedPosts(user_id: number): Observable<Like[]> {
+    const url = `${this.baseUrl}/likes?user_id=eq.${user_id}`;
+    return this.http.get<Like[]>(url);
   }
 }

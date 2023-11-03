@@ -10,6 +10,7 @@ import {UsersService} from '../users.service';
 import {ImageService} from '../image.service';
 import {select, Store} from "@ngrx/store";
 import {changePostState, changeCommentsState} from "./show-form.actions";
+import { Like } from '../like';
 
 @Component({
     selector: 'app-timeline',
@@ -27,6 +28,7 @@ export class TimelineComponent {
     showForm$!: Observable<boolean>;
     showComments$!: Observable<number>;
     user_id!: number;
+    likedPosts!: number[];
 
     constructor(private postsService: PostsService, private localStore: LocalService, private usersService: UsersService, private imageService: ImageService, private store: Store<{
         showForm: boolean,
@@ -60,6 +62,14 @@ export class TimelineComponent {
         this.usersService.getUserId(this.currentUser !== null ? this.currentUser : "").subscribe((user: number) => {
             this.user_id = user;
             console.log("Første gang user id " + this.user_id);
+
+            this.postsService.getLikedPosts(this.user_id).subscribe(data => {
+                this.likedPosts = new Array(data.length);
+                for (let index = 0; index < data.length; index++) {
+                    this.likedPosts[index] = data[index].post_id;
+                }
+                console.log("Dette er liked posts" + this.likedPosts);
+            });
         });
     }
 

@@ -1,9 +1,10 @@
 <div class="posts">
     <div class="accountInfo">
         <h3>Account: {{username}}</h3>
-        <pre class="bio" *ngIf="!showForm">{{account.bio}}</pre>
+        <pre class="bio" (click)="toggleForm()" *ngIf="!showForm">{{account.bio}}</pre>
         <div *ngIf="showForm">
-            <textarea class="plz" name="bio" id="bio" type="text" value="{{account.bio}}" #bio></textarea>
+            <textarea class="bio" name="bio" id="bio" type="text" value="{{account.bio}}" #bio ></textarea>
+            <br>
             <!--<div style="padding-top: 12px;"></div>-->
             <app-button (click)="saveBio(bio.value, account.id)">Save</app-button>
         </div>
@@ -17,7 +18,7 @@
             <a [routerLink]="['/account', post.user?.username]" class="accountLink">
                 <h2>{{post.user?.username}}</h2>
             </a>
-            <pre>{{post.body}}</pre>
+            <pre class="preTagg">{{post.body}}</pre>
         </div>
         <div class="image" *ngIf="post.image_id">
             <img src="{{post.image?.image_path}}" style="max-width: 30rem; max-height: 30rem;" />

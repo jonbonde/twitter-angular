@@ -43,14 +43,26 @@
     background-color: #FFFFFF;
     border-style: solid;
     border-color: #4eb5f1;
-    border-width: 5px;
+    border-width: 2px;
     border-radius: 2rem;
-}
-
-pre {
+    width: 44vw;
+    resize: none;
+    white-space: pre-wrap;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    font-size: large;
     white-space: pre-wrap;
+    contain: content;
+}
+
+.preTagg {
+    white-space: pre-wrap;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+textarea {
+    height: 300;
 }
 
 .postHeader {

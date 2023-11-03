@@ -31,6 +31,9 @@
         </div>
         <div *ngIf="isLogedIn && currentUser" class="postFooter">
             <div>
+                <div *ngIf="likedPosts.includes(post.id)">
+                    You liked this
+                </div>
                 <app-button label="LIKE ME" (click)="likePost(post.id, post.id)">
                     :D
                 </app-button>
